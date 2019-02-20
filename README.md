@@ -1,5 +1,5 @@
 # About it
-Repositorio para la materia "Desarrollo de aplicaciones móviles"
+Repository for subject-matter "Desarrollo de aplicaciones móviles"
 
 ## Get all projects
 ```bash
@@ -7,4 +7,4 @@ git clone https://github.com/stratshub/desarrolloappsmoviles.git
 ```
 
 ## Contact
-### email: juanjoseesva@gmail.com
+### Email: juanjoseesva@gmail.com
