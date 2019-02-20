@@ -5,3 +5,6 @@ Repositorio para la materia "Desarrollo de aplicaciones móviles"
 ```bash
 git clone https://github.com/stratshub/desarrolloappsmoviles.git
 ```
+
+## Contact
+### email: juanjoseesva@gmail.com
