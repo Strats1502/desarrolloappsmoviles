@@ -8,3 +8,6 @@ git clone https://github.com/stratshub/desarrolloappsmoviles.git
 
 ## Contact
 ### Email: juanjoseesva@gmail.com
+
+## Updates
+20/02/2019 - Add Hello world application
