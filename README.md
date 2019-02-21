@@ -1,4 +1,4 @@
-# About it
+﻿# About it
 Repository for subject-matter "Desarrollo de aplicaciones móviles"
 
 ## Get all projects
@@ -10,4 +10,4 @@ git clone https://github.com/stratshub/desarrolloappsmoviles.git
 ### Email: juanjoseesva@gmail.com
 
 ## Updates
-20/02/2019 - Add Hello world application
+20/02/2019 - Add Hello world application and Calculator application
