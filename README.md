@@ -11,3 +11,4 @@ git clone https://github.com/stratshub/desarrolloappsmoviles.git
 
 ## Updates
 20/02/2019 - Add Hello world application and Calculator application
+27/02/2019 - Fixed and add breakpoints application
