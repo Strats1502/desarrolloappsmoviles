@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">constants</string>
+    <string name="tv_name">Nombre</string>
+    <string name="tv_yearsold">Edad</string>
+    <string name="tv_job">Puesto</string>
+    <string name="tl_name">Ingresa tu nombre</string>
+    <string name="tl_yearsold">Ingresa tu edad</string>
+    <string name="tl_job">Ingresa tu puesto</string>
+</resources>
