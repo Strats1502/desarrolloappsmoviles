@@ -54,7 +54,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline2" app:layout_constraintStart_toStartOf="@+id/guideline4"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:contentDescription="@string/content_description_button_configuration"/>
-    <com.google.android.material.button.MaterialButton
+    <Button
             android:text="@string/number_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -88,7 +88,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline10" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline8" app:layout_constraintEnd_toStartOf="@+id/guideline5"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" tools:text="@string/number_4"/>
+            android:layout_marginStart="8dp" android:text="@string/number_4"/>
     <Button
             android:text="@string/number_5"
             android:layout_width="0dp"

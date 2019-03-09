@@ -13,6 +13,11 @@ class MainActivity : AppCompatActivity() {
 
         button_next_activity.setOnClickListener {
             val intent = Intent(this@MainActivity, SecondActivity::class.java)
+            val myObject = MyObject()
+            myObject.name = "Juan Jose"
+            myObject.lastname = "Estrada"
+
+            intent.putExtra("object", myObject)
             startActivity(intent)
         }
     }

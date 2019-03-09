@@ -18,7 +18,8 @@
     <string name="operation_sub">-</string>
     <string name="operation_div">/</string>
     <string name="operation_mul">x</string>
-
+    <string name="point">.</string>
+    <string name="equals">=</string>
     <!--Content descriptions-->
     <string name="content_description_button_configuration">Button for configure calculator</string>
 </resources>
