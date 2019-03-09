@@ -20,6 +20,10 @@
     <string name="operation_mul">x</string>
     <string name="point">.</string>
     <string name="equals">=</string>
+
+    <!--Functions for clear screen-->
+    <string name="clear_c">C</string>
+    <string name="clear_ce">CE</string>
     <!--Content descriptions-->
     <string name="content_description_button_configuration">Button for configure calculator</string>
 </resources>
