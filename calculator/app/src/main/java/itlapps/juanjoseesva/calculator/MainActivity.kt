@@ -7,6 +7,7 @@ import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    var lastResult = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,6 +15,12 @@ class MainActivity : AppCompatActivity() {
 
         button_clear_c.setOnClickListener {
             tv_entry.text = getString(R.string.number_0)
+        }
+
+        button_clear_ce.setOnClickListener {
+            tv_entry.text = getString(R.string.number_0)
+            tv_last_result.text = getString(R.string.number_0)
+            lastResult = 0.0
         }
 
         button_number_0.setOnClickListener {
@@ -61,7 +68,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         button_operation_add.setOnClickListener {
-            add()
+            operation(getString(R.string.operation_add))
+        }
+
+        button_operation_sub.setOnClickListener {
+            operation(getString(R.string.operation_sub))
+        }
+
+        button_operation_mul.setOnClickListener {
+            operation(getString(R.string.operation_mul))
+        }
+
+        button_operation_div.setOnClickListener {
+            operation(getString(R.string.operation_div))
         }
 
     }
@@ -88,16 +107,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun add() {
-        val currentNumber = tv_entry.text
+    @SuppressLint("SetTextI18n")
+    fun operation(operationSign : String) {
+        val currentNumber = tv_entry.text.toString()
 
-        Log.e("First", currentNumber.first().toString())
-        Log.e("Last", currentNumber.last().toString().equals(getString(R.string.number_0)).toString())
+        if (currentNumber.toDouble() > 0 && !currentNumber.last().toString().equals(getString(R.string.point))) {
+            if (lastResult > 0) {
+                when(operationSign) {
+                    getString(R.string.operation_add) -> lastResult += currentNumber.toDouble()
+                    getString(R.string.operation_sub) -> lastResult -= currentNumber.toDouble()
+                    getString(R.string.operation_mul) -> lastResult *= currentNumber.toDouble()
+                    getString(R.string.operation_div) -> lastResult /= currentNumber.toDouble()
+                }
 
-        if (currentNumber.isNotEmpty() &&
-            !currentNumber.last().equals(getString(R.string.point)) &&
-            !currentNumber.first().equals(getString(R.string.number_0))) {
-            tv_entry.text = tv_entry.text.toString() + getString(R.string.operation_add)
+                tv_last_result.text = String.format("%.2f", lastResult)
+                tv_entry.text = getString(R.string.number_0)
+            } else {
+                lastResult = currentNumber.toDouble()
+
+                tv_last_result.text = String.format("%.2f", lastResult)
+                tv_entry.text = getString(R.string.number_0)
+            }
         }
+
+
     }
 }
