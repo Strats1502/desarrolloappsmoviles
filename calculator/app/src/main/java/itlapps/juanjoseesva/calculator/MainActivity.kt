@@ -83,6 +83,10 @@ class MainActivity : AppCompatActivity() {
             operation(getString(R.string.operation_div))
         }
 
+        button_backspace.setOnClickListener {
+            backspace()
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -131,5 +135,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    fun backspace() {
+        tv_entry.text = tv_entry.text.dropLast(1)
+
+        if (tv_entry.text.isEmpty()) {
+            tv_entry.text = getString(R.string.number_0)
+        }
     }
 }
