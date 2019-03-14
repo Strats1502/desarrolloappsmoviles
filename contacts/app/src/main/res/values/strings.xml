@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">contacts</string>
+
+    <string-array name="areas">
+        <item>Administración</item>
+        <item>Sistemas</item>
+    </string-array>
+
+    <string-array name="jobs">
+        <item>Programador</item>
+        <item>Intendente</item>
+        <item>Secretaria</item>
+    </string-array>
+
+    <string-array name="nationalities">
+        <item>Mexicano</item>
+        <item>Estadounidense</item>
+    </string-array>
+
+    <string-array name="statuses">
+        <item>Activo</item>
+        <item>Inactivo</item>
+    </string-array>
+
+    <string-array name="schooling">
+        <item>Primaria</item>
+        <item>Secundaria</item>
+        <item>Preparatoria</item>
+        <item>Universidad</item>
+        <item>Posgrado</item>
+    </string-array>
+
+    <string name="hint_name">Nombre</string>
+    <string name="hint_lastname1">Apellido paterno</string>
+    <string name="hint_lastname2">Apellido materno</string>
+    <string name="hint_birthday">Fecha de cumpleaños</string>
+    <string name="hint_phone">Teléfono</string>
+    <string name="hint_email">Correo eléctronico</string>
+    <string name="hint_address">Dirección</string>
+    <string name="hint_paysheet">Número nómina</string>
+    <string name="hint_area">Área</string>
+    <string name="hint_job">Trabajo</string>
+    <string name="hint_state">Estado</string>
+    <string name="hint_nss">NSS</string>
+    <string name="hint_emergencycontact">Contacto de emergencia</string>
+
+    <string name="contentdescription_imagecontact">Imagen para contacto</string>
+
+    <string name="title_area">Área</string>
+    <string name="title_job">Puesto</string>
+    <string name="title_scholarship">Escolaridad</string>
+    <string name="title_nationality">Nacionalidad</string>
+    <string name="title_status">Estatus</string>
+    
+    <string name="button_save">Guardar</string>
+</resources>
