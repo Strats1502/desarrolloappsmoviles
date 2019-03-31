@@ -7,13 +7,10 @@ import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
 import io.realm.Realm
-import io.realm.RealmConfiguration
 import io.realm.RealmList
 import itlapps.juanjoseesva.contacts.R
 import itlapps.juanjoseesva.contacts.adapters.AdapterContact
@@ -21,7 +18,7 @@ import itlapps.juanjoseesva.contacts.model.Contact
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
+    private var adapter: AdapterContact? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     private fun refreshList() {
         Realm.init(this)
         //val config = RealmConfiguration.Builder().name("contact.realm").build()
-        val realm = Realm.getDefaultInstance()
+        var realm = Realm.getDefaultInstance()
 
         val allContacts = realm.where(Contact::class.java).findAll()
 
@@ -51,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         contacts.addAll(allContacts.subList(0, allContacts.size))
 
         val manager: LinearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val adapter: AdapterContact = AdapterContact(contacts, this) { contact ->
+        adapter = AdapterContact(contacts, this) { contact ->
             val builder =  AlertDialog.Builder(this)
             builder.setTitle(contact.name)
             builder.setMessage("Nombre: ${contact.name} Apellido: ${contact.lastName1} Correo: ${contact.email}")
@@ -73,11 +70,13 @@ class MainActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                adapter!!.getFilter().filter(p0)
+                return true
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                adapter!!.getFilter().filter(p0)
+                return true
             }
 
         })
