@@ -14,4 +14,5 @@ git clone https://github.com/stratshub/desarrolloappsmoviles.git
 27/02/2019 - Fixed and add breakpoints application  
 06/03/2019 - Add change activity project  
 09/03/2019 - Implements functionality in numbers, point, operations, C and CE buttons(Calculator project)  
-10/03/2019 - Finish calculator project and add send object between activities in changeactivities project
+10/03/2019 - Finish calculator project and add send object between activities in changeactivities project  
+31/03/2019 - (Contacts project) finish searchview, base64 image, validations and camera permissions

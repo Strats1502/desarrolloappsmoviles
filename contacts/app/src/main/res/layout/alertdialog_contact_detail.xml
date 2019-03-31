@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:padding="20dp">
+
+    <ImageView android:id="@+id/iv_contactt" android:layout_width="100dp" android:layout_height="100dp"
+               android:layout_centerHorizontal="true" android:src="@mipmap/ic_launcher"/>
+
+    <TextView android:id="@+id/tv_namecontact" android:layout_below="@id/iv_contactt" android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:text="Name" android:layout_centerHorizontal="true"/>
+
+    <TextView android:id="@+id/tv_phone" android:layout_below="@id/tv_namecontact" android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:text="Phone" android:layout_centerHorizontal="true"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="email"
+              android:layout_centerHorizontal="true" android:id="@+id/tv_email" android:layout_below="@id/tv_phone"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="jobarea"
+              android:id="@+id/tv_jobarea" android:layout_below="@id/tv_email" android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
