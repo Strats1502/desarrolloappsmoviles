@@ -6,16 +6,47 @@
     <ImageView android:id="@+id/iv_contactt" android:layout_width="100dp" android:layout_height="100dp"
                android:layout_centerHorizontal="true" android:src="@mipmap/ic_launcher"/>
 
-    <TextView android:id="@+id/tv_namecontact" android:layout_below="@id/iv_contactt" android:layout_width="wrap_content"
-              android:layout_height="wrap_content" android:text="Name" android:layout_centerHorizontal="true"/>
+    <TextView android:id="@+id/tv_titleinformation" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Informacion general" android:textStyle="bold" android:layout_below="@+id/iv_contactt"/>
 
-    <TextView android:id="@+id/tv_phone" android:layout_below="@id/tv_namecontact" android:layout_width="wrap_content"
-              android:layout_height="wrap_content" android:text="Phone" android:layout_centerHorizontal="true"/>
+
+    <TextView android:id="@+id/tv_namecontact" android:layout_below="@id/tv_titleinformation" android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:text="Name" />
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Paysheet"
+              android:id="@+id/tv_paysheet" android:layout_below="@id/tv_namecontact"/>
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NSS"
+              android:id="@+id/tv_nss" android:layout_below="@id/tv_paysheet" />
+
+    <TextView android:id="@+id/tv_phone" android:layout_below="@id/tv_nss" android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:text="Phone"/>
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="email"
-              android:layout_centerHorizontal="true" android:id="@+id/tv_email" android:layout_below="@id/tv_phone"/>
+               android:id="@+id/tv_email" android:layout_below="@id/tv_phone"/>
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="jobarea"
-              android:id="@+id/tv_jobarea" android:layout_below="@id/tv_email" android:layout_centerHorizontal="true"/>
 
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="area"
+              android:id="@+id/tv_area" android:layout_below="@id/tv_email"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="job"
+              android:id="@+id/tv_job" android:layout_below="@id/tv_area" />
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="birthday"
+              android:id="@+id/tv_birthday" android:layout_below="@id/tv_job"/>
+
+
+    <LinearLayout android:visibility="gone" android:layout_marginTop="10dp" android:layout_below="@+id/tv_birthday" android:id="@+id/ll_containerdiseases" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Enfermedades cronicas" android:textStyle="bold"/>
+
+        <TextView android:id="@+id/tv_diseases" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="enferdades"/>
+    </LinearLayout>
+
+    <LinearLayout android:visibility="gone" android:layout_below="@id/ll_containerdiseases" android:layout_marginTop="10dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ll_containeremergencycontact" android:orientation="vertical">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Contacto de emergencia" android:textStyle="bold"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/tv_emergencycontactname" android:text="Nombre contacto emergencia"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/tv_emergencycontactphone" android:text="Telefono contacto de emergencia"/>
+    </LinearLayout>
 </RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">multilanguage</string>
+
+    <string name="tv_1">Computer</string>
+    <string name="tv_2">Shoes</string>
+    <string name="tv_3">Hand</string>
+    <string name="tv_4">Lamp</string>
+    <string name="tv_5">Window</string>
+    <string name="tv_6">Headphones</string>
+</resources>

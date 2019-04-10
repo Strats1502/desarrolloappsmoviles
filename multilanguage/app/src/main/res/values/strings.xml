@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">multilanguage</string>
+
+    <string name="tv_1">Computadora</string>
+    <string name="tv_2">Zapatos</string>
+    <string name="tv_3">Mano</string>
+    <string name="tv_4">Lampara</string>
+    <string name="tv_5">Ventana</string>
+    <string name="tv_6">Audifonos</string>
+</resources>

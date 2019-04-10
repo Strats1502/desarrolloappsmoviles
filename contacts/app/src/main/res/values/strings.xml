@@ -43,6 +43,9 @@
     <string name="hint_state">Estado</string>
     <string name="hint_nss">NSS</string>
     <string name="hint_emergencycontact">Contacto de emergencia</string>
+    <string name="hint_cronicdiseases">Enfermedades cronicas</string>
+    <string name="hint_emergencycontactname">Nombre</string>
+    <string name="hint_emergencycontactphone">Telefono</string>
 
     <string name="contentdescription_imagecontact">Imagen para contacto</string>
 
@@ -51,6 +54,7 @@
     <string name="title_scholarship">Escolaridad</string>
     <string name="title_nationality">Nacionalidad</string>
     <string name="title_status">Estatus</string>
+    <string name="title_emergencycontact">Contacto de emergencia</string>
     
     <string name="button_save">Guardar</string>
 
@@ -58,6 +62,11 @@
 
     <string name="inputtext_error_empty">Ingresa este campo</string>
     <string name="inputtext_error_regex">Formato no válido</string>
+    <string name="inputtext_error_emergencycontact">Se necesita de ambos o ningun valor</string>
+    <string name="inputtext_error_paysheetalreadyexists">Numero de nomina ya existe, usa otro</string>
+
+    <string name="button_edit">Editar</string>
+    <string name="button_delete">Eliminar</string>
 
     <string name="menu_camera">Cámara</string>
     <string name="meny_gallery">Galería</string>

@@ -24,14 +24,17 @@ import android.util.Patterns
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import io.realm.Realm
+import io.realm.exceptions.RealmPrimaryKeyConstraintException
 import itlapps.juanjoseesva.contacts.R
 import itlapps.juanjoseesva.contacts.model.Contact
 import kotlinx.android.synthetic.main.activity_addcontact.*
 import kotlinx.android.synthetic.main.menu_bottom_addphoto.*
+import org.w3c.dom.Text
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.lang.Exception
 import java.util.*
 import java.util.jar.Manifest
 
@@ -75,24 +78,34 @@ class AddContactActivity : AppCompatActivity() {
         val spinnerItem: Int = android.R.layout.simple_spinner_item
         val spinnerDropdownItem: Int = android.R.layout.simple_spinner_dropdown_item
 
-        val adapterAreas: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(context,
-            R.array.areas, spinnerItem)
+        val adapterAreas: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            context,
+            R.array.areas, spinnerItem
+        )
         adapterAreas.setDropDownViewResource(spinnerDropdownItem)
 
-        val adapterJobs: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(context,
-            R.array.jobs, spinnerItem)
+        val adapterJobs: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            context,
+            R.array.jobs, spinnerItem
+        )
         adapterJobs.setDropDownViewResource(spinnerDropdownItem)
 
-        val adapterScholarship: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(context,
-            R.array.schooling, spinnerItem)
+        val adapterScholarship: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            context,
+            R.array.schooling, spinnerItem
+        )
         adapterScholarship.setDropDownViewResource(spinnerDropdownItem)
 
-        val adapterNationality: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(context,
-            R.array.nationalities, spinnerItem)
+        val adapterNationality: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            context,
+            R.array.nationalities, spinnerItem
+        )
         adapterNationality.setDropDownViewResource(spinnerDropdownItem)
 
-        val adapterStatuses: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(context,
-            R.array.statuses, spinnerItem)
+        val adapterStatuses: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
+            context,
+            R.array.statuses, spinnerItem
+        )
         adapterStatuses.setDropDownViewResource(spinnerDropdownItem)
 
         spinner_area.adapter = adapterAreas
@@ -155,28 +168,41 @@ class AddContactActivity : AppCompatActivity() {
             val scholarship: String = spinner_scholarship.selectedItem.toString()
             val nationality: String = spinner_nationality.selectedItem.toString()
             val status: String = spinner_status.selectedItem.toString()
+            val diseases: String = et_diseases.text.toString()
+            val emergencyContactName: String = et_emergencycontactname.text.toString()
+            val emergencyContactPhone: String = et_emergencycontactphone.text.toString()
 
-            realm.beginTransaction()
-            val contact = realm.createObject(Contact::class.java)
-            contact.name = name
-            contact.lastName1 = lastName1
-            contact.lastName2 = lastName2
-            contact.birthday = birthday
-            contact.phone = phone
-            contact.email = email
-            contact.address = address
-            contact.paysheet = paysheet
-            contact.area = area
-            contact.job = job
-            contact.state = state
-            contact.nss = nss
-            contact.scholarship = scholarship
-            contact.nationality = nationality
-            contact.status = status
-            contact.photoURL = getBase64Image()
-            realm.commitTransaction()
+            try {
+                realm.beginTransaction()
+                val contact = realm.createObject(Contact::class.java, paysheet)
+                contact.name = name
+                contact.lastName1 = lastName1
+                contact.lastName2 = lastName2
+                contact.birthday = birthday
+                contact.phone = phone
+                contact.email = email
+                contact.address = address
+                //contact.paysheet = paysheet
+                contact.area = area
+                contact.job = job
+                contact.state = state
+                contact.nss = nss
+                contact.scholarship = scholarship
+                contact.nationality = nationality
+                contact.status = status
+                contact.photoURL = getBase64Image()
+                contact.diseases = diseases
+                contact.emergencyContactName = emergencyContactName
+                contact.emergencyContactPhone = emergencyContactPhone
+                realm.commitTransaction()
 
-            this.finish()
+                this.finish()
+            } catch (exception: RealmPrimaryKeyConstraintException) {
+                realm.cancelTransaction()
+                et_paysheet.setError(getString(R.string.inputtext_error_paysheetalreadyexists))
+                et_paysheet.requestFocus()
+            }
+
         }
     }
 
@@ -184,6 +210,7 @@ class AddContactActivity : AppCompatActivity() {
     private fun validate(): Boolean {
         val errorEmpty = getString(R.string.inputtext_error_empty)
         val errorRegex = getString(R.string.inputtext_error_regex)
+        val errorEmergencyContact = getString(R.string.inputtext_error_emergencycontact)
 
         if (!TextUtils.isEmpty(et_name.text.toString())) {
             if (!TextUtils.isEmpty(et_lastname1.text.toString())) {
@@ -196,7 +223,18 @@ class AddContactActivity : AppCompatActivity() {
                                         if (!TextUtils.isEmpty(et_paysheet.text.toString())) {
                                             if (!TextUtils.isEmpty(et_state.text.toString())) {
                                                 if (!TextUtils.isEmpty(et_nss.text.toString())) {
-                                                    return true
+                                                    if ((TextUtils.isEmpty(et_emergencycontactname.text.toString())
+                                                                && TextUtils.isEmpty(et_emergencycontactphone.text.toString())) ||
+                                                        (!TextUtils.isEmpty(et_emergencycontactname.text.toString()) &&
+                                                                !TextUtils.isEmpty(et_emergencycontactphone.text.toString()))
+                                                    ) {
+                                                        return true
+                                                    } else {
+                                                        et_emergencycontactname.error = errorEmergencyContact
+                                                        et_emergencycontactphone.error = errorEmergencyContact
+                                                        et_emergencycontactname.requestFocus()
+                                                        return false
+                                                    }
                                                 } else {
                                                     et_nss.error = errorEmpty
                                                     et_nss.requestFocus()
@@ -255,8 +293,10 @@ class AddContactActivity : AppCompatActivity() {
     }
 
     fun openGallery() {
-        val galleryIntent = Intent(Intent.ACTION_PICK,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        val galleryIntent = Intent(
+            Intent.ACTION_PICK,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        )
 
         startActivityForResult(galleryIntent, GALLERY)
     }
@@ -270,28 +310,26 @@ class AddContactActivity : AppCompatActivity() {
         }
     }
 
-    public override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GALLERY)
-        {
-            if (data != null)
-            {
+        if (requestCode == GALLERY) {
+            if (data != null) {
                 val contentURI = data!!.data
-                try
-                {
+                try {
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
                     iv_photo!!.setImageBitmap(bitmap)
 
-                }
-                catch (e: IOException) {
+                } catch (e: IOException) {
                     e.printStackTrace()
                 }
 
             }
 
         } else if (requestCode == CAMERA) {
-            val thumbnail = data!!.extras!!.get("data") as Bitmap
-            iv_photo!!.setImageBitmap(thumbnail)
+            try {
+                val thumbnail = data!!.extras!!.get("data") as Bitmap
+                iv_photo!!.setImageBitmap(thumbnail)
+            } catch (error: Exception) {}
             /*saveImage(thumbnail)
             Toast.makeText(this@AddContactActivity, "Image Saved!", Toast.LENGTH_SHORT).show()*/
         }
@@ -304,12 +342,12 @@ class AddContactActivity : AppCompatActivity() {
     }
 
     private fun makeCameraPermissionRequest() {
-        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA) , CAMERA_REQUEST_CODE)
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), CAMERA_REQUEST_CODE)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode) {
+        when (requestCode) {
             CAMERA_REQUEST_CODE -> {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Snackbar.make(window.decorView.rootView, "Permiso denegado", Snackbar.LENGTH_LONG)

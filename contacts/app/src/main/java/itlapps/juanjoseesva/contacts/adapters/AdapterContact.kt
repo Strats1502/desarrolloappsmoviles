@@ -27,7 +27,8 @@ class AdapterContact(val contacts: List<Contact>, val context: Context, val list
 
     class AdapterContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(contact: Contact, listener: (Contact) -> Unit) = with(itemView) {
-            tv_name.text = contact.name
+            tv_name.text = "${contact.name} ${contact.lastName1} ${contact.lastName2}"
+            tv_paysheetrv.text = "N° nomina: ${contact.paysheet}"
             val decodedString = Base64.decode(contact.photoURL, Base64.DEFAULT)
             val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
             iv_contact.setImageBitmap(decodedByte)
